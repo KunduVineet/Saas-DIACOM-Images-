@@ -1,7 +1,7 @@
 // src/components/TopNavBar.jsx
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ({handleReset, handleSave}) => {
   return (
     <header className="bg-blue-500 p-4 shadow-md">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
@@ -27,8 +27,8 @@ const Navbar = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center space-x-4">
-          <button className="bg-green-500 px-4 py-2 rounded-md text-white hover:bg-green-400">Save</button>
-          <button className="bg-red-500 px-4 py-2 rounded-md text-white hover:bg-red-400">Reset</button>
+          <button className="bg-green-500 px-4 py-2 rounded-md text-white hover:bg-green-400" onClick={handleSave}>Save</button>
+          <button className="bg-red-500 px-4 py-2 rounded-md text-white hover:bg-red-400" onClick={handleReset}>Reset</button>
         </div>
       </div>
     </header>

@@ -1,69 +1,69 @@
-// src/components/Main.jsx
-import React, { useState } from 'react';
-import { useDropzone } from 'react-dropzone';
+import React, { useState, useRef } from "react";
+import { useDropzone } from "react-dropzone";
+import Navbar from "./Navbar";
+import ImageEditor from "./ImageEditor";
 
 const Main = () => {
-    const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null);
+  const canvasRef = useRef(null); // reference for the canvas
 
-    // Handling the drop of an image
-    const onDrop = (acceptedFiles) => {
-        const file = acceptedFiles[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImage(reader.result); // Set the image to state
-            };
-            reader.readAsDataURL(file);
-        }
-    };
+  // Handle image drop
+  const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => setImage(reader.result); // Set the image in state
+      reader.readAsDataURL(file);
+    }
+  };
 
-    const { getRootProps, getInputProps } = useDropzone({
-        onDrop,
-        accept: 'image/*', // only allow image files
-    });
+  // Handlers for saving and resetting image
+  const handleSave = () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png"); // Convert canvas to image URL
+      link.download = "edited-image.png"; // Download file
+      link.click();
+    }
+  };
 
-    // Handle image deletion
-    const deleteImage = () => {
-        setImage(null);
-    };
+  const handleReset = () => {
+    setImage(null); // Reset the image state
+  };
 
-    return (
-        <div className="flex justify-center items-center h-screen">
-            {/* Image Upload Area */}
-            {!image ? (
-                <div
-                    {...getRootProps()}
-                    className="border-4 border-dashed border-blue-400 p-16 rounded-lg text-center cursor-pointer hover:bg-blue-50 transition-all ease-in-out duration-300"
-                >
-                    <input {...getInputProps()} />
-                    <p className="text-gray-600 text-lg">
-                        <img
-                            src="./drag-drop.svg"
-                            alt=""
-                            width={"300px"}
-                            height={"300px"}
-                        />
-                    </p>
-                </div>
-            ) : (
-                <div className="relative">
-                    {/* Display uploaded image with delete option */}
-                    <img
-                        src={image}
-                        alt="Preview"
-                        className="w-full h-auto rounded-md max-w-[1000px] shadow-lg "
-                    />
-                    {/* Cross button to delete image */}
-                    <button
-                        onClick={deleteImage}
-                        className="absolute top-2 right-2 text-white bg-red-500 hover:bg-red-700 rounded-full w-8 h-8 flex items-center justify-center text-xl"
-                    >
-                        &times;
-                    </button>
-                </div>
-            )}
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+  });
+
+  return (
+    <div className="bg-gray-100 h-screen">
+      <Navbar handleSave={handleSave} handleReset={handleReset} />
+
+      {/* Image Upload or Editor */}
+      {!image ? (
+        <div
+          {...getRootProps()}
+          className="h-full flex items-center justify-center border-4 border-dashed border-gray-300 p-16 rounded-lg cursor-pointer text-center"
+        >
+          <input {...getInputProps()} />
+          <div className="text-center">
+            <img
+              src="/drag-drop.svg"
+              alt="Upload"
+              className="mx-auto mb-4"
+              width="450"
+              height="450"
+            />
+            <p className="text-gray-600">Drag & Drop or Click to Upload</p>
+          </div>
         </div>
-    );
+      ) : (
+        <ImageEditor image={image} canvasRef={canvasRef} />
+      )}
+    </div>
+  );
 };
 
 export default Main;
