@@ -1,5 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
-import { FaSun, FaAdjust, FaSearch, FaCrop } from "react-icons/fa";
+import React, { useState, useRef } from "react";
 import { MdWindow } from "react-icons/md";
 import { IoMdStats } from "react-icons/io";
 import Cropper from "react-easy-crop";
@@ -148,7 +147,12 @@ const ImageEditor = ({ image }) => {
 
                         {/* Brightness Control */}
                         <div className="flex items-center space-x-3">
-                            <FaSun className="text-yellow-500 text-lg top-2" />
+                            {/* Replace FaSun with an image */}
+                            <img
+                                src="./brightness.svg" // Replace with the correct path or URL
+                                alt="Brightness Icon"
+                                className="w-6 h-6"
+                            />
                             <div className="w-full">
                                 <label className="block text-sm">Brightness</label>
                                 <input
@@ -164,9 +168,14 @@ const ImageEditor = ({ image }) => {
                             </div>
                         </div>
 
+
                         {/* Contrast Control */}
                         <div className="flex items-center space-x-3">
-                            <FaAdjust className="text-blue-400 text-lg" />
+                            <img
+                                src="./contrast.svg" // Replace with the actual path to the contrast icon image
+                                alt="Contrast Icon"
+                                className="w-6 h-6"
+                            />
                             <div className="w-full">
                                 <label className="block text-sm">Contrast</label>
                                 <input
@@ -181,9 +190,13 @@ const ImageEditor = ({ image }) => {
                             </div>
                         </div>
 
-                        {/* Zoom Control */}
+
                         <div className="flex items-center space-x-3">
-                            <FaSearch className="text-green-400 text-lg" />
+                            <img
+                                src="./search.svg" // Replace with the actual path to the zoom icon image
+                                alt="Zoom Icon"
+                                className="w-6 h-6"
+                            />
                             <div className="w-full">
                                 <label className="block text-sm">Zoom</label>
                                 <input
@@ -197,6 +210,7 @@ const ImageEditor = ({ image }) => {
                                 <span className="text-sm">{zoom}%</span>
                             </div>
                         </div>
+
 
                         {/* Window Control */}
                         <div className="flex items-center space-x-3">
