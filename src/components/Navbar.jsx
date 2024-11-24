@@ -11,23 +11,9 @@ const Navbar = ({handleReset, handleSave}) => {
         </div>
 
         {/* Navigation Links */}
-        <nav>
-          <ul className="flex space-x-6 text-white">
-            <li>
-              <a href="#upload" className="hover:text-gray-300">Upload</a>
-            </li>
-            <li>
-              <a href="#tools" className="hover:text-gray-300">Tools</a>
-            </li>
-            <li>
-              <a href="#about" className="hover:text-gray-300">About</a>
-            </li>
-          </ul>
-        </nav>
-
+        
         {/* Action Buttons */}
         <div className="flex items-center space-x-4">
-          <button className="bg-green-500 px-4 py-2 rounded-md text-white hover:bg-green-400" onClick={handleSave}>Save</button>
           <button className="bg-red-500 px-4 py-2 rounded-md text-white hover:bg-red-400" onClick={handleReset}>Reset</button>
         </div>
       </div>
