@@ -1,24 +1,37 @@
-// src/components/TopNavBar.jsx
-import React from 'react';
+import React, { useState } from 'react';
+import DimensionModal from '../DimensionModal.jsx';
 
-const Navbar = ({handleReset, handleSave}) => {
+const Navbar = ({ width, height, handleReset }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <header className="bg-blue-500 p-4 shadow-md">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
-        {/* Logo/Title */}
         <div className="text-white text-2xl font-bold">
           <span>Image Editor</span>
         </div>
 
-        {/* Navigation Links */}
-        
-        {/* Action Buttons */}
-        <div className="flex items-center space-x-4">
-          <button className="bg-red-500 px-4 py-2 rounded-md text-white hover:bg-red-400" onClick={handleReset}>Reset</button>
-        </div>
+        <button
+          className="bg-green-500 px-4 py-2 rounded-md text-white hover:bg-green-400"
+          onClick={openModal}
+        >
+          Dimension Converter
+        </button>
+        <button className="bg-red-500 px-4 py-2 rounded-md text-white hover:bg-red-400" onClick={handleReset}>Reset</button>
+
       </div>
+
+      <DimensionModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        width={width}
+        height={height}
+      />
     </header>
   );
-}
+};
 
 export default Navbar;
