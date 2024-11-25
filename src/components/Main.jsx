@@ -27,8 +27,6 @@ const Main = () => {
     const file = acceptedFiles[0];
     if (!file) return;
 
-    
-
     setLoading(true);
     setError(null);
 

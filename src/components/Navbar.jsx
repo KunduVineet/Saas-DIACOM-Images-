@@ -11,7 +11,7 @@ const Navbar = ({ width, height, handleReset }) => {
     <header className="bg-blue-500 p-4 shadow-md">
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         <div className="text-white text-2xl font-bold">
-          <span>Image Editor</span>
+          <span>DICOM Image Viewer & Editor</span>
         </div>
 
         <button
@@ -20,7 +20,7 @@ const Navbar = ({ width, height, handleReset }) => {
         >
           Dimension Converter
         </button>
-        <button className="bg-red-500 px-4 py-2 rounded-md text-white hover:bg-red-400" onClick={handleReset}>Reset</button>
+        <button className="bg-red-500 px-4 py-2 rounded-md text-white hover:bg-red-400" onClick={handleReset}>Upload Other Image</button>
 
       </div>
 
