@@ -1,4 +1,4 @@
-# Image Editor Application  
+# SAAS DICOM Image Editor Application  
 
 ## Table of Contents  
 - [Project Overview](#project-overview)  
